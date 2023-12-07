@@ -1,0 +1,8 @@
+FROM woshiaotian/simple-base-image:v0.1.7
+
+WORKDIR /data
+COPY  ./dist/consul-cache /data/consul-cache
+COPY config_files/*.yaml /data/config_files/
+COPY supervisor_cache.conf /etc/supervisor/conf.d/consul-cache.conf
+
+CMD ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/supervisord.conf"]

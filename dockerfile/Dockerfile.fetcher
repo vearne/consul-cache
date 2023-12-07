@@ -1,0 +1,9 @@
+FROM woshiaotian/simple-base-image:v0.1.7
+
+WORKDIR /data
+COPY  ./dist/consul-fetcher /data/consul-fetcher
+COPY config_files/*.yaml /data/config_files/
+COPY supervisor_fetcher.conf /etc/supervisor/conf.d/consul-fetcher.conf
+
+CMD ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/supervisord.conf"]
+
