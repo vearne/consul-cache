@@ -1,7 +1,21 @@
+FROM golang:1.21 as builder
+ADD . $GOPATH/src/github.com/vearne/consul-cache
+WORKDIR $GOPATH/src/github.com/vearne/consul-cache/cmd/cache
+
+ARG BUILD_VERSION=""
+ARG BUILD_TIME=""
+ARG BUILD_COMMIT=""
+ARG IMPORT_PATH="github.com/vearne/consul-cache"
+
+ENV CGO_ENABLED=0
+RUN go build -o /bin/consul-cache\
+        -ldflags "-s -w -X ${IMPORT_PATH}/consts.GitTag=${BUILD_COMMIT} -X ${IMPORT_PATH}/consts.BuildTime=${BUILD_TIME} -X ${IMPORT_PATH}/consts.Version=${BUILD_VERSION}"
+
+
 FROM woshiaotian/simple-base-image:v0.1.7
 
 WORKDIR /data
-COPY  ./dist/consul-cache /data/consul-cache
+COPY --from=builder /bin/consul-cache /data/consul-cache
 COPY config_files/*.yaml /data/config_files/
 COPY supervisor_cache.conf /etc/supervisor/conf.d/consul-cache.conf
 

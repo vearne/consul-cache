@@ -1,0 +1,10 @@
+{
+  "ID": "web-02",
+  "Name": "web",
+  "Tags": [
+    "primary",
+    "v1"
+  ],
+  "Address": "192.168.5.25",
+  "Port": 8088
+}

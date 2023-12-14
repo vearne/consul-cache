@@ -1,0 +1,36 @@
+logger:
+  # 1. "info"
+  # 2. "debug"
+  # 3. "error"
+  level: "debug"
+  filepath: "/var/log/cache.log"
+
+
+web:
+  mode: "release"
+  listen_address: ":18500"
+  pprof_address:  ":18081"
+  prometheus_address: ":9090"
+
+cache:
+  expiration: 5m
+
+redis-consul:
+  addr: redis-srv:6392
+  password: "eYVX7EwVmmxKP"
+  db: 0
+  maxRetries: 0
+  minRetryBackoff: "8ms"
+  maxRetryBackoff: "512ms"
+  dialTimeout: "5s"
+  readTimeout: "3s"
+  writeTimeout: "3s"
+  poolSize: 100
+  poolTimeout: "30s"
+
+rocketmq-state:
+  NameServers: 172.25.2.1:9876
+  topic: "svc-info"
+  consumer:
+    groupId: "svc-info-consumer"
+

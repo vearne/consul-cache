@@ -1,0 +1,123 @@
+version: '3'
+
+services:
+  # Consul
+  consul-server:
+    image: hashicorp/consul:1.10.0
+    container_name: consul-server
+    restart: always
+    volumes:
+     - ./server.json:/consul/config/server.json:ro
+    ports:
+      - "8500:8500"
+    command: "agent"
+    networks:
+      mynetwork:
+        ipv4_address: 172.25.1.1
+
+  consul-client:
+    image: hashicorp/consul:1.10.0
+    container_name: consul-client
+    restart: always
+    volumes:
+     - ./client.json:/consul/config/client.json:ro
+    ports:
+      - "18550:8500"
+    command: "agent"
+    networks:
+      mynetwork:
+        ipv4_address: 172.25.1.2
+
+  # RocketMQ
+  namesrv:
+    image: dyrnq/rocketmq:4.8.0
+    container_name: rmqnamesrv
+    ports:
+      - 9876:9876
+    command: sh mqnamesrv
+    networks:
+      mynetwork:
+        ipv4_address: 172.25.2.1
+    
+  broker:
+    image: dyrnq/rocketmq:4.8.0
+    container_name: rmqbroker
+    ports:
+      - 10909:10909
+      - 10911:10911
+      - 10912:10912
+    # 使用本地配置文件覆盖broker容器中文件
+    volumes:
+      - ./broker.conf:/home/rocketmq/rocketmq-4.8.0/conf/broker.conf
+    command: sh mqbroker -n namesrv:9876 -c /home/rocketmq/rocketmq-4.8.0/conf/broker.conf
+    depends_on:
+      - namesrv
+    networks:
+      mynetwork:
+        ipv4_address: 172.25.2.2
+    
+  mqconsole:
+    image: candice0630/rocketmq-console-ng:2.0
+    container_name: rmqconsole
+    ports:
+      - 8083:8080
+    environment:
+      JAVA_OPTS: -Drocketmq.config.isVIPChannel=false
+    depends_on:
+      - namesrv
+    networks:
+      mynetwork:
+        ipv4_address: 172.25.2.3
+      
+  # Redis
+  redis-srv:
+    image: redis:6.0
+    container_name: redis-srv
+    restart: always
+    ports:
+      - "6392:6392"
+    command: redis-server --port 6392 --requirepass eYVX7EwVmmxKP
+    networks:
+      mynetwork:
+        ipv4_address: 172.25.3.1
+
+  # consul cache
+  consul-fetcher:
+    image: woshiaotian/consul-fetcher:v0.0.8
+    volumes:
+      - ./config/config.fetcher.local.yaml:/data/config_files/config.fetcher.local.yaml
+    restart: always
+    container_name: consul-fetcher
+    environment:
+      RUN_MODE: local
+    depends_on:
+      - consul-client
+      - namesrv
+      - redis-srv
+    networks:
+      mynetwork:
+        ipv4_address: 172.25.4.1
+      
+  consul-cache:
+    image: woshiaotian/consul-cache:v0.0.8
+    ports:
+      - "18500:18500"
+    volumes:
+      - ./config/config.cache.local.yaml:/data/config_files/config.cache.local.yaml
+    restart: always
+    container_name: consul-cache
+    environment:
+      RUN_MODE: local
+    depends_on:
+      - consul-fetcher
+    networks:
+      mynetwork:
+        ipv4_address: 172.25.4.2
+
+
+networks:
+  mynetwork:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
