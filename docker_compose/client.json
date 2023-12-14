@@ -1,0 +1,10 @@
+{
+    "node_name": "consul-client",
+    "data_dir": "/consul/data",
+    "retry_join":[
+        "consul-server"
+     ],
+    "addresses": {
+      "http" : "0.0.0.0"
+    }
+}

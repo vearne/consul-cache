@@ -6,6 +6,7 @@ import (
 	consulapi "github.com/hashicorp/consul/api"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/pkg/errors"
+	"github.com/redis/go-redis/v9"
 	"github.com/vearne/consul-cache/internal/consts"
 	"github.com/vearne/consul-cache/internal/model"
 	"github.com/vearne/consul-cache/internal/resource"

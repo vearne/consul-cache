@@ -1,0 +1,33 @@
+logger:
+  # 1. "info"
+  # 2. "debug"
+  # 3. "error"
+  level: "debug"
+  filepath: "/var/log/fetcher.log"
+
+consuls:
+  - addresses:
+      - consul-client:8500
+    dc: dc1
+
+services:
+  - web
+
+redis-consul:
+  addr: redis-srv:6392
+  password: "eYVX7EwVmmxKP"
+  db: 0
+  maxRetries: 0
+  minRetryBackoff: "8ms"
+  maxRetryBackoff: "512ms"
+  dialTimeout: "5s"
+  readTimeout: "3s"
+  writeTimeout: "3s"
+  poolSize: 100
+  poolTimeout: "30s"
+
+rocketmq-state:
+  NameServers: 172.25.2.1:9876
+  topic: "svc-info"
+  producer:
+    groupId: "svc-info-producer"

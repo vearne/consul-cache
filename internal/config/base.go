@@ -65,6 +65,5 @@ type RocketMQ struct {
 }
 
 type RocketMQParticipant struct {
-	Token   string `mapstructure:"token"`
 	GroupID string `mapstructure:"groupId"`
 }
