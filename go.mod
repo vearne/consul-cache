@@ -14,7 +14,7 @@ require (
 	github.com/prometheus/client_golang v1.17.0
 	github.com/redis/go-redis/v9 v9.1.0
 	github.com/spf13/viper v1.17.0
-	github.com/vearne/golib v0.2.2
+	github.com/vearne/golib v0.2.0
 	github.com/vearne/worker_manager v0.0.9
 	go.uber.org/zap v1.26.0
 	golang.org/x/sync v0.3.0
