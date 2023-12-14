@@ -197,7 +197,6 @@ func healthService(c *gin.Context) {
 
 	masquerading(c, state.Index, param.Stale)
 	c.JSON(http.StatusOK, filterWithTag(state.Data, param.Tags))
-	return
 }
 
 func filterWithTag(entrys []consulapi.ServiceEntry, tags []string) []consulapi.ServiceEntry {

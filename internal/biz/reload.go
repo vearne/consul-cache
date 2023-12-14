@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	consulapi "github.com/hashicorp/consul/api"
-	jsoniter "github.com/json-iterator/go"
+	"github.com/json-iterator/go"
 	"github.com/pkg/errors"
 	"github.com/redis/go-redis/v9"
 	"github.com/vearne/consul-cache/internal/consts"
@@ -42,7 +42,10 @@ func ReloadFromRedis(dc string, svc string, expiration time.Duration) (*model.Se
 	}
 
 	state.Data = make([]consulapi.ServiceEntry, 0)
-	jsoniter.Unmarshal([]byte(data), &state.Data)
+	err = jsoniter.Unmarshal([]byte(data), &state.Data)
+	if err != nil {
+		return nil, errors.WithMessage(err, "jsoniter.Unmarshal-state.Data")
+	}
 
 	key = fmt.Sprintf(consts.StatekeyFormat, dc, svc)
 	resource.SeviceStateCache.Set(key, &state, expiration)
