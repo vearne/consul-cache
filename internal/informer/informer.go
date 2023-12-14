@@ -50,5 +50,6 @@ func (informer *Informer) Stop() {
 	for _, watcher := range informer.watchers {
 		watcher.Stop()
 	}
-	informer.group.Wait()
+	err := informer.group.Wait()
+	zlog.Error("Informer.Stop()", zap.Error(err))
 }
