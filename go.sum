@@ -375,8 +375,8 @@ github.com/prometheus/procfs v0.11.1/go.mod h1:eesXgaPo1q7lBpVMoMy0ZOFTth9hBn4W/
 github.com/redis/go-redis/v9 v9.1.0 h1:137FnGdk+EQdCbye1FW+qOEcY5S+SpY9T0NiuqvtfMY=
 github.com/redis/go-redis/v9 v9.1.0/go.mod h1:urWj3He21Dj5k4TK1y59xH8Uj6ATueP8AH1cY3lZl4c=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
-github.com/rogpeppe/go-internal v1.10.0 h1:TMyTOH3F/DB16zRVcYyreMH6GnZZrwQVAoYjRBZyWFQ=
-github.com/rogpeppe/go-internal v1.10.0/go.mod h1:UQnix2H7Ngw/k4C5ijL5+65zddjncjaFoBhdsK/akog=
+github.com/rogpeppe/go-internal v1.11.0 h1:cWPaGQEPrBb5/AsnsZesgZZ9yb1OQ+GOISoDNXVBh4M=
+github.com/rogpeppe/go-internal v1.11.0/go.mod h1:ddIwULY96R17DhadqLgMfk9H9tvdUzkipdSkR5nkCZA=
 github.com/ryanuber/columnize v0.0.0-20160712163229-9b3edd62028f/go.mod h1:sm1tb6uqfes/u+d4ooFouqFdy9/2g9QGwK3SQygK0Ts=
 github.com/sagikazarmark/locafero v0.3.0 h1:zT7VEGWC2DTflmccN/5T1etyKvxSxpHsjb9cJvm4SvQ=
 github.com/sagikazarmark/locafero v0.3.0/go.mod h1:w+v7UsPNFwzF1cHuOajOOzoq4U7v/ig1mpRjqV+Bu1U=
@@ -435,8 +435,8 @@ github.com/twitchyliquid64/golang-asm v0.15.1 h1:SU5vSMR7hnwNxj24w34ZyCi/FmDZTkS
 github.com/twitchyliquid64/golang-asm v0.15.1/go.mod h1:a1lVb/DtPvCB8fslRZhAngC2+aY1QWCk3Cedj/Gdt08=
 github.com/ugorji/go/codec v1.2.11 h1:BMaWp1Bb6fHwEtbplGBGJ498wD+LKlNSl25MjdZY4dU=
 github.com/ugorji/go/codec v1.2.11/go.mod h1:UNopzCgEMSXjBc6AOMqYvWC1ktqTAfzJZUZgYf6w6lg=
-github.com/vearne/golib v0.2.0 h1:65ADB4s77+Ev0BClMu0m9G3mevnA+FzUT1Px4RhH5TQ=
-github.com/vearne/golib v0.2.0/go.mod h1:elwxFXWi1Q0qyUw34qELfa51EegnaXOzB2+CG0Nqa+g=
+github.com/vearne/golib v0.2.3 h1:piTfmO48CuQh2GbcDX+VIE6IGkqtlYjLN/vOIUjIncM=
+github.com/vearne/golib v0.2.3/go.mod h1:fvLagm89FK0Qcy8JX/8ng87Mhwc15B5eBEasa3pHLPQ=
 github.com/vearne/simplelog v0.0.1 h1:N/nQ1cLpJIVIRfWn4Ccv2nhETxq1lMC1u79yy714dUg=
 github.com/vearne/simplelog v0.0.1/go.mod h1:W7Ip7PHWs8c0X+7b8hSj9zH7WxKB3oQ1pkr3tAtxqSo=
 github.com/vearne/worker_manager v0.0.9 h1:z5C/5NzslHszJ7wx/Ubbg/nO+b4s6nWXW9KCaaHHby4=
