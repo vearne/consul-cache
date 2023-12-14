@@ -1,5 +1,6 @@
 # consul-cache
 [![golang-ci](https://github.com/vearne/consul-cache/actions/workflows/golang-ci.yml/badge.svg)](https://github.com/vearne/consul-cache/actions/workflows/golang-ci.yml)
+
 consul-cache is a local cache disguised as consul agent and has stronger performance.
 
 ## Purpose
