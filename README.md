@@ -18,3 +18,33 @@ cache disguises itself as a consul agent to facilitate service discovery by busi
 
 
 ![Architecture](./img/arch.png) 
+
+## Quick Start with Docker compose
+Switch to directory [docker_compose](https://github.com/vearne/consul-cache/tree/main/docker_compose)
+```
+cd docker_compose
+```
+
+### start
+
+```
+docker-compose up -d
+```
+
+### stop
+```
+docker-compose down
+```
+### Register and Discover
+refer to this [document](https://github.com/vearne/consul-cache/tree/main/script/register/register_deregister.md)
+
+#### Register through consul client
+```
+curl -X PUT --data @payload.json \
+http://localhost:18550/v1/agent/service/register
+```
+
+#### Discover through consul-cache
+```
+curl 'http://localhost:18500/v1/health/service/web?dc=dc1&passing=true'
+```
