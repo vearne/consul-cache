@@ -109,11 +109,16 @@ func parseHSParam(c *gin.Context) (*HSParam, error) {
 	}
 	param.Index = uint64(idx)
 
-	waitStr := c.DefaultQuery("wait", "5m")
+	waitStr := c.DefaultQuery("wait", "1m")
 	d, err := time.ParseDuration(waitStr)
 	if err != nil {
 		return nil, errors.New("invalid wait time")
 	}
+
+	if d > 3*time.Minute {
+		d = 3 * time.Minute
+	}
+
 	param.Wait = d
 	_, ok = c.GetQuery("stale")
 	if ok {
