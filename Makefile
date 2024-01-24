@@ -1,4 +1,4 @@
-VERSION :=v0.0.8
+VERSION :=v0.0.9
 
 RELEASE_DIR = dist
 IMPORT_PATH = github.com/vearne/consul-cache
