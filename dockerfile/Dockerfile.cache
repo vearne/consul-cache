@@ -8,7 +8,7 @@ ARG BUILD_COMMIT=""
 ARG IMPORT_PATH="github.com/vearne/consul-cache"
 
 ENV CGO_ENABLED=0
-RUN go build -o /bin/consul-cache\
+RUN go build -tags=jsoniter -o /bin/consul-cache \
         -ldflags "-s -w -X ${IMPORT_PATH}/consts.GitTag=${BUILD_COMMIT} -X ${IMPORT_PATH}/consts.BuildTime=${BUILD_TIME} -X ${IMPORT_PATH}/consts.Version=${BUILD_VERSION}"
 
 

@@ -1,4 +1,4 @@
-VERSION :=v0.0.9
+VERSION :=v0.0.10
 
 RELEASE_DIR = dist
 IMPORT_PATH = github.com/vearne/consul-cache
@@ -29,7 +29,7 @@ git-tag:
 .PHONY: build
 build: build-dirs
 	go build ${LDFLAGS} -o ${RELEASE_DIR}/consul-fetcher ./cmd/fetcher
-	go build ${LDFLAGS} -o ${RELEASE_DIR}/consul-cache ./cmd/cache
+	go build -tags=jsoniter ${LDFLAGS} -o ${RELEASE_DIR}/consul-cache ./cmd/cache
 
 .PHONY: image
 image: build
