@@ -10,7 +10,8 @@ LDFLAGS = -ldflags "-s -w -X ${IMPORT_PATH}/internal/consts.GitTag=${GITTAG} -X 
 
 #TAG = ${VERSION}-${BUILD_TIME}-${BUILD_COMMIT}
 TAG = ${VERSION}
-IMAGE_FETCHER = woshiaotian/consul-fetcher:${TAG} IMAGE_CACHE = woshiaotian/consul-cache:${TAG}
+IMAGE_FETCHER = woshiaotian/consul-fetcher:${TAG}
+IMAGE_CACHE = woshiaotian/consul-cache:${TAG}
 
 
 .PHONY: clean
