@@ -2,9 +2,9 @@ package resource
 
 import (
 	"github.com/apache/rocketmq-client-go/v2"
-	"github.com/patrickmn/go-cache"
 	"github.com/redis/go-redis/v9"
 	"github.com/vearne/consul-cache/internal/config"
+	"github.com/vearne/consul-cache/internal/coolcache"
 	zlog "github.com/vearne/consul-cache/internal/log"
 	"github.com/vearne/consul-cache/internal/model"
 	"time"
@@ -12,7 +12,7 @@ import (
 
 var (
 	// {dc}:{service} -> *ServiceState
-	SeviceStateCache   *cache.Cache
+	SeviceStateCache   *coolcache.CoolCache
 	StateReadOnlyRedis redis.Cmdable
 	StateMQConsumer    rocketmq.PushConsumer
 
@@ -39,7 +39,7 @@ func InitConsulCacheResource() {
 }
 
 func initCache() {
-	SeviceStateCache = cache.New(5*time.Minute, 10*time.Minute)
+	SeviceStateCache = coolcache.NewCoolCache(100, 5*time.Minute, 10*time.Minute)
 }
 
 func initStateRedis() {

@@ -1,4 +1,4 @@
-VERSION :=v0.0.10
+VERSION :=v0.0.11
 
 RELEASE_DIR = dist
 IMPORT_PATH = github.com/vearne/consul-cache
@@ -10,8 +10,7 @@ LDFLAGS = -ldflags "-s -w -X ${IMPORT_PATH}/internal/consts.GitTag=${GITTAG} -X 
 
 #TAG = ${VERSION}-${BUILD_TIME}-${BUILD_COMMIT}
 TAG = ${VERSION}
-IMAGE_FETCHER = woshiaotian/consul-fetcher:${TAG}
-IMAGE_CACHE = woshiaotian/consul-cache:${TAG}
+IMAGE_FETCHER = woshiaotian/consul-fetcher:${TAG} IMAGE_CACHE = woshiaotian/consul-cache:${TAG}
 
 
 .PHONY: clean
